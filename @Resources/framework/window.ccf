@@ -1,0 +1,29 @@
+[rainmeter]
+update = 1000
+accurateText = 1
+mouseActionCursor = 0
+onCloseAction = #Window.CloseCommands#
+onRefreshAction = #Window.LoadCommands#[!snapEdges 0]
+@include = #@#settings.inc
+
+[variables]
+window.title = #CURRENTFILE#
+window.innerWidth = 600
+window.innerHeight = 400
+window.titlebar = 1
+; appearance
+window.accent = #user.accent#
+window.colorPrimary = 240, 240, 240
+window.colorSecondary = 230, 230, 230
+; events
+window.onClose =
+window.onLoad =
+
+;
+; BACKGROUND
+;
+
+[window.background]
+meter = shape
+shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 30 : 0)), 5 | fill linearGradient windowGradient | strokeWidth 0
+windowGradient = 270 | #window.colorPrimary# ; 0 | #window.colorSecondary# ; 1
