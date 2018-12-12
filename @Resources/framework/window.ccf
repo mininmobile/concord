@@ -2,8 +2,9 @@
 update = 1000
 accurateText = 1
 mouseActionCursor = 0
-onCloseAction = #Window.CloseCommands#
-onRefreshAction = #Window.LoadCommands#[!snapEdges 0]
+dragMargins = 0, 0, 0, -30
+onCloseAction = #window.onClose#
+onRefreshAction = #window.onLoad#[!snapEdges 0]
 @include = #@#settings.inc
 
 [variables]
@@ -15,7 +16,7 @@ window.titlebar = 1
 window.colorPrimary = 240, 240, 240
 window.colorSecondary = 230, 230, 230
 ; events
-window.onClose =[!log lol]
+window.onClose =
 window.onLoad =
 
 ;
