@@ -5,12 +5,14 @@ mouseActionCursor = 0
 dragMargins = 0, 0, 0, -30
 onCloseAction = #window.onClose#
 onRefreshAction = #window.onLoad#[!snapEdges 0]
+onFocusAction = [!setOption "window.titlebar.title" "fontColor" "0, 0, 0"][!update]
+onUnfocusAction = [!setOption "window.titlebar.title" "fontColor" "100, 100, 100"][!update]
 @include = #@#settings.inc
-
+100
 [variables]
 window.title = #CURRENTFILE#
-window.innerWidth = 600
-window.innerHeight = 400
+window.innerWidth = 500
+window.innerHeight = 300
 window.titlebar = 1
 ; appearance
 window.colorPrimary = 240, 240, 240
@@ -20,17 +22,13 @@ window.onClose =
 window.onLoad =
 
 ;
-; BACKGROUND
+; BASE
 ;
 
 [window.background]
 meter = shape
-shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 30 : 0)), 5 | fill linearGradient windowGradient | strokeWidth 0
+shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 30 : 0)), 6 | fill linearGradient windowGradient | strokeWidth 0
 windowGradient = 270 | #window.colorPrimary# ; 0 | #window.colorSecondary# ; 1
-
-;
-; TITLEBAR
-;
 
 [window.titlebar.title]
 meter = string
