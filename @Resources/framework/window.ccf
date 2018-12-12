@@ -12,11 +12,10 @@ window.innerWidth = 600
 window.innerHeight = 400
 window.titlebar = 1
 ; appearance
-window.accent = #user.accent#
 window.colorPrimary = 240, 240, 240
 window.colorSecondary = 230, 230, 230
 ; events
-window.onClose =
+window.onClose =[!log lol]
 window.onLoad =
 
 ;
@@ -27,3 +26,25 @@ window.onLoad =
 meter = shape
 shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 30 : 0)), 5 | fill linearGradient windowGradient | strokeWidth 0
 windowGradient = 270 | #window.colorPrimary# ; 0 | #window.colorSecondary# ; 1
+
+;
+; TITLEBAR
+;
+
+[window.titlebar.title]
+meter = string
+x = 9
+y = 9
+text = #window.title#
+fontSize = 12
+fontColor = 0, 0, 0
+antiAlias = 1
+hidden = (1 - #window.titlebar#)
+
+[window.titlebar.close]
+meter = shape
+shape = rectangle (#window.innerWidth# - 21), 9, 14, 14 | fill color 255, 255, 255, 1 | strokeWidth 0
+shape2 = line (#window.innerWidth# - 21), 9, (#window.innerWidth# - 9), 21 | stroke color 50, 50, 50 | strokeWidth 2
+shape3 = line (#window.innerWidth# - 21), 21, (#window.innerWidth# - 9), 9 | stroke color 50, 50, 50 | strokeWidth 2
+leftMouseUpAction = [!deactivateConfig]
+hidden = (1 - #window.titlebar#)
