@@ -47,3 +47,13 @@ shape2 = line (#window.innerWidth# - 21), 9, (#window.innerWidth# - 9), 21 | str
 shape3 = line (#window.innerWidth# - 21), 21, (#window.innerWidth# - 9), 9 | stroke color 50, 50, 50 | strokeWidth 2
 leftMouseUpAction = [!deactivateConfig]
 hidden = (1 - #window.titlebar#)
+
+;
+; CONTROLS
+;
+
+[control.text]
+fontFace = Segoue UI
+fontColor = 0, 0, 0
+clipString = 2
+antiAlias = 1
