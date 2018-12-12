@@ -57,3 +57,10 @@ fontFace = Segoue UI
 fontColor = 0, 0, 0
 clipString = 2
 antiAlias = 1
+
+[control.button]
+padding = 8, 8, 8, 8
+fontFace = Segoue UI
+fontColor = 250, 250, 250
+solidColor = 60, 100, 200
+antiAlias = 1
