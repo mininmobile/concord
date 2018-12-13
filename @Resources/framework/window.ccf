@@ -2,18 +2,16 @@
 update = 1000
 accurateText = 1
 mouseActionCursor = 0
-dragMargins = 0, 0, 0, -30
+dragMargins = 0, 0, 0, (#window.titlebar# = 1 ? -40 : 0)
 onCloseAction = #window.onClose#
-onRefreshAction = #window.onLoad#[!snapEdges 0]
-onFocusAction = [!setOption "window.titlebar.title" "fontColor" "0, 0, 0"][!update]
-onUnfocusAction = [!setOption "window.titlebar.title" "fontColor" "100, 100, 100"][!update]
+onRefreshAction = #window.onLoad#[!snapEdges 0][!keepOnScreen 0]
 @include = #@#settings.inc
 100
 [variables]
 window.title = #CURRENTFILE#
 window.innerWidth = 500
 window.innerHeight = 300
-window.titlebar = 1
+window.titlebar = 0
 ; appearance
 window.colorPrimary = 240, 240, 240
 window.colorSecondary = 230, 230, 230
@@ -27,24 +25,30 @@ window.onLoad =
 
 [window.background]
 meter = shape
-shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 30 : 0)), 6 | fill linearGradient windowGradient | strokeWidth 0
+shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 40 : 0)), 6 | fill linearGradient windowGradient | strokeWidth 0
 windowGradient = 270 | #window.colorPrimary# ; 0 | #window.colorSecondary# ; 1
 
 [window.titlebar.title]
 meter = string
-x = 9
-y = 9
+x = (#window.innerwidth# / 2)
+y = 20
 text = #window.title#
-fontSize = 12
+fontFace = Segoue UI
+fontSize = 16
 fontColor = 0, 0, 0
+fontWeight = 300
+stringAlign = centercenter
 antiAlias = 1
 hidden = (1 - #window.titlebar#)
 
 [window.titlebar.close]
 meter = shape
-shape = rectangle (#window.innerWidth# - 21), 9, 14, 14 | fill color 255, 255, 255, 1 | strokeWidth 0
-shape2 = line (#window.innerWidth# - 21), 9, (#window.innerWidth# - 9), 21 | stroke color 50, 50, 50 | strokeWidth 2
-shape3 = line (#window.innerWidth# - 21), 21, (#window.innerWidth# - 9), 9 | stroke color 50, 50, 50 | strokeWidth 2
+shape = rectangle (#window.innerWidth# - 31.5), 8.5, 25, 25, 3 | fill color 255, 255, 255, 1 | stroke color 0, 0, 0, 35 | extend hoverstyle
+shape2 = line (#window.innerWidth# - 26), 14, (#window.innerWidth# - 12), 28 | stroke color 50, 50, 50 | strokeWidth 2
+shape3 = line (#window.innerWidth# - 26), 28, (#window.innerWidth# - 12), 14 | stroke color 50, 50, 50 | strokeWidth 2
+hoverstyle = strokeWidth 0
+mouseOverAction = [!setOption window.titlebar.close hoverstyle "strokeWidth 1"][!update]
+mouseLeaveAction = [!setOption window.titlebar.close hoverstyle "strokeWidth 0"][!update]
 leftMouseUpAction = [!deactivateConfig]
 hidden = (1 - #window.titlebar#)
 
@@ -59,8 +63,15 @@ clipString = 2
 antiAlias = 1
 
 [control.button]
-padding = 8, 8, 8, 8
+shape = rectangle 0, 0, 130, 26, 3 | fill color 60, 100, 200 | strokeWidth 0
+
+[control.button.text]
+x = 70r
+y = 1r
+w = 130
 fontFace = Segoue UI
+fontSize = 12
 fontColor = 250, 250, 250
-solidColor = 60, 100, 200
+stringAlign = center
+clipString = 1
 antiAlias = 1
