@@ -11,7 +11,7 @@ onRefreshAction = #window.onLoad#[!snapEdges 0][!keepOnScreen 0]
 window.title = #CURRENTFILE#
 window.innerWidth = 500
 window.innerHeight = 300
-window.titlebar = 0
+window.titlebar = 1
 ; appearance
 window.colorPrimary = 240, 240, 240
 window.colorSecondary = 230, 230, 230
