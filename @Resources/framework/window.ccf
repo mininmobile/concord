@@ -63,11 +63,11 @@ clipString = 2
 antiAlias = 1
 
 [control.button]
-shape = rectangle 0, 0, 130, 26, 3 | fill color 60, 100, 200 | strokeWidth 0
+shape = rectangle 0, 0, 130, 32, 3 | fill color 60, 100, 200 | strokeWidth 0
 
 [control.button.text]
 x = 70r
-y = 1r
+y = 4r
 w = 130
 fontFace = Segoue UI
 fontSize = 12
