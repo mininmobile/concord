@@ -7,8 +7,7 @@ onCloseAction = #window.onClose#
 onRefreshAction = #window.onLoad#[!snapEdges 0][!keepOnScreen 0]
 onFocusAction = [!setOption window.background hoverstyle "fill color 0, 0, 0, 100"][!update]
 onUnfocusAction = [!setOption window.background hoverstyle "fill color 0, 0, 0, 30"][!update]
-@include = #@#settings.inc
-100
+
 [variables]
 window.title = #CURRENTFILE#
 window.contentWidth = 500
@@ -24,6 +23,8 @@ window.colorSecondary = 230, 230, 230
 ; events
 window.onClose =
 window.onLoad =
+; libraries
+@include = #@#settings.inc
 
 ;
 ; BASE
