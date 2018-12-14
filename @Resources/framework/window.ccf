@@ -5,12 +5,18 @@ mouseActionCursor = 0
 dragMargins = 0, 0, 0, (#window.titlebar# = 1 ? -40 : 0)
 onCloseAction = #window.onClose#
 onRefreshAction = #window.onLoad#[!snapEdges 0][!keepOnScreen 0]
+onFocusAction = [!setOption window.background hoverstyle "fill color 0, 0, 0, 100"][!update]
+onUnfocusAction = [!setOption window.background hoverstyle "fill color 0, 0, 0, 30"][!update]
 @include = #@#settings.inc
 100
 [variables]
 window.title = #CURRENTFILE#
-window.innerWidth = 500
-window.innerHeight = 300
+window.contentWidth = 500
+window.contentHeight = 300
+window.innerWidth = (#window.contentWidth# + 14)
+window.innerHeight = (#window.contentHeight# + 7 + (#window.titlebar# = 1 ? 40 : 0))
+window.width = (#window.innerWidth# + 14)
+window.height = (#window.innerHeight# + 14)
 window.titlebar = 1
 ; appearance
 window.colorPrimary = 240, 240, 240
@@ -25,13 +31,15 @@ window.onLoad =
 
 [window.background]
 meter = shape
-shape = rectangle 0, 0, #window.innerWidth#, (#window.innerHeight# + (#window.titlebar# = 1 ? 40 : 0)), 6 | fill linearGradient windowGradient | strokeWidth 0
+shape = rectangle 0, 0, #window.width#, #window.height#, 12 | strokeWidth 0 | extend hoverstyle
+shape2 = rectangle 7, 7, #window.innerWidth#, #window.innerHeight#, 6 | fill linearGradient windowGradient | strokeWidth 0
 windowGradient = 270 | #window.colorPrimary# ; 0 | #window.colorSecondary# ; 1
+hoverstyle = fill color 0, 0, 0, 100
 
 [window.titlebar.title]
 meter = string
-x = (#window.innerwidth# / 2)
-y = 20
+x = (#window.width# / 2)
+y = 26
 text = #window.title#
 fontFace = Segoue UI
 fontSize = 16
@@ -43,9 +51,9 @@ hidden = (1 - #window.titlebar#)
 
 [window.titlebar.close]
 meter = shape
-shape = rectangle (#window.innerWidth# - 31.5), 8.5, 25, 25, 3 | fill color 255, 255, 255, 1 | stroke color 0, 0, 0, 35 | extend hoverstyle
-shape2 = line (#window.innerWidth# - 26), 14, (#window.innerWidth# - 12), 28 | stroke color 50, 50, 50 | strokeWidth 2
-shape3 = line (#window.innerWidth# - 26), 28, (#window.innerWidth# - 12), 14 | stroke color 50, 50, 50 | strokeWidth 2
+shape = rectangle (#window.innerWidth# - 25.5), 14.5, 25, 25, 3 | fill color 255, 255, 255, 1 | stroke color 0, 0, 0, 35 | extend hoverstyle
+shape2 = line (#window.innerWidth# - 20), 20, (#window.innerWidth# - 6), 34 | stroke color 50, 50, 50 | strokeWidth 2
+shape3 = line (#window.innerWidth# - 20), 34, (#window.innerWidth# - 6), 20 | stroke color 50, 50, 50 | strokeWidth 2
 hoverstyle = strokeWidth 0
 mouseOverAction = [!setOption window.titlebar.close hoverstyle "strokeWidth 1"][!update]
 mouseLeaveAction = [!setOption window.titlebar.close hoverstyle "strokeWidth 0"][!update]
