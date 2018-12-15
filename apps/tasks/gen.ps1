@@ -5,7 +5,7 @@ function generate {
 
 	$resources = $RmAPI.VariableStr("@")
 
-	if ($customtasks) { $tasks = $customtasks } else { $tasks = $RmAPI.VariableStr("tasks.data") }
+	$tasks =  if ($customtasks) { $customtasks } else { $RmAPI.VariableStr("tasks.data") }
 	$tasks = $tasks.Split("|")
 
 	$data = "";
@@ -35,7 +35,7 @@ leftMouseUpAction = [[generator:Invoke(complete "$($task)")]]`n
 [tasks.item$_.text]
 meter = string
 meterStyle = tasks.control.item.text
-text = $($task)`n
+text = $($task)`n`n
 "@
 
 		Set-Content -Path ($resources + "data\tasks.items.inc") -Value $data
@@ -48,6 +48,8 @@ function complete {
 	param (
 		[string]$ctask
 	)
+
+	if ($RmAPI.VariableStr("tasks.mode") -eq "1") { remove $ctask; return $null }
 
 	$resources = $RmAPI.VariableStr("@")
 
@@ -62,8 +64,37 @@ function complete {
 	# set new tasks
 	$tasks = $temp -join ""
 	$RmAPI.Bang(@"
-!writeKeyValue variables tasks.data "$($tasks)" "$($resources)data\tasks.inc"
+!writeKeyValue variables tasks.data "$tasks" "$($resources)data\tasks.inc"
 "@)
 
 	generate $tasks
+}
+
+function remove {
+	param (
+		[string]$rtask
+	)
+
+	$resources = $RmAPI.VariableStr("@")
+
+	$tasks =  $RmAPI.VariableStr("tasks.data")
+	$tasks = $tasks.Split("|")
+
+	$data = "";
+
+	0..($tasks.Length - 1) | % {
+		$task = $tasks[$_].Split(",")[1]
+
+		if ($rtask -ne $task) {
+			$data += $tasks[$_]
+
+			if ($_ -ne $tasks.Length - 1) { $data += "|" }
+		}
+	}
+
+	$RmAPI.Bang(@"
+!writeKeyValue variables tasks.data "$data" "$($resources)data\tasks.inc"
+"@)
+
+	generate $data
 }

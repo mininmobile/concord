@@ -7,6 +7,7 @@ y = 54
 meter = string
 meterStyle = tasks.control.item.text
 text = Do a thing
+
 [tasks.item1]
 meter = shape
 meterStyle = tasks.control.item
@@ -15,6 +16,7 @@ leftMouseUpAction = [[generator:Invoke(complete "fish for pp")]]
 meter = string
 meterStyle = tasks.control.item.text
 text = fish for pp
+
 [tasks.item2]
 meter = shape
 meterStyle = tasks.control.item
@@ -24,6 +26,7 @@ completed = fill color 0, 0, 0
 meter = string
 meterStyle = tasks.control.item.text
 text = clone nxtos
+
 [tasks.item3]
 meter = shape
 meterStyle = tasks.control.item
@@ -32,4 +35,5 @@ leftMouseUpAction = [[generator:Invoke(complete "poob")]]
 meter = string
 meterStyle = tasks.control.item.text
 text = poob
+
 
