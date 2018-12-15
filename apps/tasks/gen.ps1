@@ -92,6 +92,10 @@ function remove {
 		}
 	}
 
+	if ($data.EndsWith("|")) {
+		$data = $data.Substring(0, $data.Length - 1)
+	}
+
 	$RmAPI.Bang(@"
 !writeKeyValue variables tasks.data "$data" "$($resources)data\tasks.inc"
 "@)

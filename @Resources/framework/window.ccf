@@ -72,7 +72,8 @@ clipString = 2
 antiAlias = 1
 
 [control.button]
-shape = rectangle 0, 0, 130, 32, 3 | fill color 60, 100, 200 | strokeWidth 0
+shape = rectangle 0.5, 0.5, 130, 30, 3 | fill color 60, 100, 200 | strokeWidth 0 | extend custom
+custom =
 
 [control.button.text]
 x = 70r
