@@ -5,7 +5,12 @@ function generate {
 
 	$resources = $RmAPI.VariableStr("@")
 
-	$tasks =  if ($customtasks) { $customtasks } else { $RmAPI.VariableStr("tasks.data") }
+	$tasks = if ($customtasks) { $customtasks } else { $RmAPI.VariableStr("tasks.data") }
+
+	$RmAPI.Bang(@"
+!writeKeyValue variables tasks.data "$tasks" "$($resources)data\tasks.inc"
+"@)
+
 	$tasks = $tasks.Split("|")
 
 	$data = "";
@@ -37,9 +42,9 @@ meter = string
 meterStyle = tasks.control.item.text
 text = $($task)`n`n
 "@
-
-		Set-Content -Path ($resources + "data\tasks.items.inc") -Value $data
 	}
+	
+	Set-Content -Path ($resources + "data\tasks.items.inc") -Value $data
 
 	$RmAPI.Bang("!refresh")
 }
