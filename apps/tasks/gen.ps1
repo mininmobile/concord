@@ -1,44 +1,75 @@
-$ran = 0
+function generate {
+	$resources = $RmAPI.VariableStr("@")
 
-function update {
-	if ($ran -eq 0) {
-		$script:ran = 1
+	$tasks = $RmAPI.VariableStr("tasks.data")
+	$tasks = $tasks.Split("|")
 
-		$resources = $RmAPI.VariableStr("@")
+	$data = "";
 
-		$tasks = $RmAPI.VariableStr("tasks.data")
-		$tasks = $tasks.Split("|")
+	0..$tasks.Length | % {
+		$taskdata = $tasks[$_].Split(",")
 
-		$data = "";
+		$task = $taskdata[1]
+		$done = $taskdata[0]
 
-		0..$tasks.Length | % {
-			$taskdata = $tasks[$_].Split(",")
-
-			$task = $taskdata[1]
-			$done = $taskdata[0]
-
-			$data += @"
+		$data += @"
 [tasks.item$_]
 meter = shape
-meterStyle = tasks.control.item`n
+meterStyle = tasks.control.item
+leftMouseUpAction = [[generator:Invoke(complete "$($task)")]]`n
 "@
 
-			if ($_ -eq 0) {
-				$data += "y = 47`n"
-			}
+		if ($_ -eq 0) {
+			$data += "y = 54`n"
+		}
 
-			if ($done -eq "1") {
-				$data += "completed = fill color 0, 0, 0`n"
-			}
+		if ($done -eq "1") {
+			$data += "completed = fill color 0, 0, 0`n"
+		}
 
-			$data += @"
+		$data += @"
 [tasks.item$_.text]
 meter = string
 meterStyle = tasks.control.item.text
 text = $($task)`n
 "@
 
-			Set-Content -Path ($resources + "data\tasks.items.inc") -Value $data
+		Set-Content -Path ($resources + "data\tasks.items.inc") -Value $data
+	}
+}
+
+function complete {
+	param (
+		$ctask
+	)
+
+	$tasks = $RmAPI.VariableStr("tasks.data")
+	$tasks = $tasks.Split("|")
+
+	$data = "";
+
+	0..$tasks.Length | % {
+		$taskdata = $tasks[$_].Split(",")
+
+		$task = $taskdata[1]
+		$done = $taskdata[0]
+
+		if ($ctask -eq $task) {
+			if ($done -eq 1) { $done = 0 } else { $done = 1 }
+
+			$data += "$($done),$($task)"
+		} else {
+			$data += "$($done),$($task)"
+		}
+
+		if ($_ -ne $tasks.Length - 1) {
+			$data += "|"
 		}
 	}
+
+	$RmAPI.Bang('!writeKeyValue variables tasks.data "$($data)" "#@#data\tasks.inc"')
+
+	generate
+
+	$RmAPI.Bang("!refresh")
 }
