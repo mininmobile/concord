@@ -1,0 +1,18 @@
+[variables]
+concord.apps = 001,002,003,004
+
+concord.apps.001.name = Notes
+concord.apps.001.image = #@#images\apps\notes.png
+concord.apps.001.path = concord\apps\notes
+
+concord.apps.002.name = Tasks
+concord.apps.002.image = #@#images\apps\tasks.png
+concord.apps.002.path = concord\apps\tasks
+
+concord.apps.003.name = Terminal
+concord.apps.003.image = #@#images\apps\terminal.png
+concord.apps.003.path = concord\apps\terminal
+
+concord.apps.004.name = Info
+concord.apps.004.image = #@#images\apps\info.png
+concord.apps.004.path = concord\apps\info
