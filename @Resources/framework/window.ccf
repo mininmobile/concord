@@ -24,7 +24,8 @@ window.colorSecondary = 230, 230, 230
 window.onClose =
 window.onLoad =
 ; libraries
-@include = #@#settings.inc
+@include = #@#system\critical.cci
+@include2 = #@#system\config.cci
 
 ;
 ; BASE
