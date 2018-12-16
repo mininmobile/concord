@@ -8,7 +8,7 @@ function generate {
 	$tasks = if ($customtasks) { $customtasks } else { $RmAPI.VariableStr("tasks.data") }
 
 	$RmAPI.Bang(@"
-!writeKeyValue variables tasks.data "$tasks" "$($resources)data\tasks.inc"
+!writeKeyValue variables tasks.data "$tasks" "$($resources)data\tasks.cca"
 "@)
 
 	$tasks = $tasks.Split("|")
@@ -44,7 +44,7 @@ text = $($task)`n`n
 "@
 	}
 	
-	Set-Content -Path ($resources + "data\tasks.items.inc") -Value $data
+	Set-Content -Path ($resources + "data\tasks.items.cca") -Value $data
 
 	$RmAPI.Bang("!refresh")
 }
@@ -69,7 +69,7 @@ function complete {
 	# set new tasks
 	$tasks = $temp -join ""
 	$RmAPI.Bang(@"
-!writeKeyValue variables tasks.data "$tasks" "$($resources)data\tasks.inc"
+!writeKeyValue variables tasks.data "$tasks" "$($resources)data\tasks.cca"
 "@)
 
 	generate $tasks
@@ -102,7 +102,7 @@ function remove {
 	}
 
 	$RmAPI.Bang(@"
-!writeKeyValue variables tasks.data "$data" "$($resources)data\tasks.inc"
+!writeKeyValue variables tasks.data "$data" "$($resources)data\tasks.cca"
 "@)
 
 	generate $data

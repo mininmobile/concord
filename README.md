@@ -10,3 +10,7 @@
 	- "concord info"
 	- used as configuration/general info
 	- `[variables]` header
+- .cca
+	- "concord archive"
+	- used as storage
+	- included in an app
