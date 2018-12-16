@@ -3,8 +3,8 @@ update = 1000
 accurateText = 1
 mouseActionCursor = 0
 dragMargins = 0, 0, 0, (#window.titlebar# = 1 ? -47 : 0)
-onCloseAction = #window.onClose#
-onRefreshAction = #window.onLoad#[!snapEdges 0][!keepOnScreen 0]
+onCloseAction = #window.onClose#[!log "Concord App `#CURRENTFILE#` Closed" debug]
+onRefreshAction = #window.onLoad#[!snapEdges 0][!keepOnScreen 0][!log "Concord App `#CURRENTFILE#` Loaded" debug]
 onFocusAction = [!setOption window.background hoverstyle "fill color 0, 0, 0, 100"][!update]
 onUnfocusAction = [!setOption window.background hoverstyle "fill color 0, 0, 0, 30"][!update]
 

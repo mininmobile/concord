@@ -1,6 +1,10 @@
+function update {
+	# update the taskbar
+}
+
 function open {
 	param (
-		[string]$appName
+		[string]$appid
 	)
 
 	# add an app to the taskbar.open variable
@@ -8,7 +12,7 @@ function open {
 
 function remove {
 	param (
-		[string]$appName
+		[string]$appid
 	)
 
 	# remove an app from the taskbar.open variable
